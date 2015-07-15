@@ -23,3 +23,7 @@ The github3.py library is also dependent on two other libraries: [requests by Ke
 ### Linecount.py
 
 This file will take the input of any GitHub username, and then count the number of lines of text that user has in all of their repositories combined. Needless to say, it takes a long time, but it still may be interesting to find out how many hundreds of thousands of lines you have on your (or someone else's) GitHub account. Right now, you have to give it your GitHub username and password for it to work, because it needs to be able to use the GitHub API as an authenticated user. I'll fix this later, but you can read the source code to verify that it doesn't do anything suspicious with your login data.
+
+### MasterToDo.py
+
+This file will, after confirming GitHub authentication, look through all of your repositories and search for to-do lists. It will compile all of the found lists into one master list, and then add some headings to make sure the sections keep separated.
