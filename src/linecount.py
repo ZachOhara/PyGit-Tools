@@ -14,10 +14,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import github3 as github
+import util
 
 def main():
-	session = promptLogin()
-	accountname = promptGetUser()
+	session = util.promptLogin()
+	accountname = util.promptInput("Enter the name of the user you want to track:\n")()
 	numRepos = 0
 	numLines = 0
 	print("\nCounting lines for all of %s's repositories. This may take a while...\n" % accountname)
@@ -26,28 +27,7 @@ def main():
 		numLines += repoLines
 		numRepos += 1
 		print(repository, "contains", repoLines, "lines of code.")
-	print("\nThere are", numRepos, "repositories, with a combined total of", numLines, "lines of code.")
-	
-def promptLogin():
-	while True:
-		try:
-			print("Log in to GitHub to get API access (passwords are not stored):")
-			username = input("Username: ")
-			password = input("Password: ")
-			gh = github.login(username, password)
-			print("\nSigning in...\n")
-			gh.update_user()
-			return gh
-		except (github.GitHubError):
-			print("Sorry, but the given credentials were not accepted. Please try again.\n")
-			
-def promptGetUser():
-	while True:
-		result = input("Enter the name of the user you want to track:\n")
-		if result != "":
-			return result
-		print("\nSorry, but you've only entered a blank string. Try again...\n")
-	
+	print("\nThere are", numRepos, "repositories, with a combined total of", numLines, "lines of code.")	
 
 def countRepoLines(repo):
 	lines = 0
